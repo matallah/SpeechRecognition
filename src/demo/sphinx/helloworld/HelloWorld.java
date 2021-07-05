@@ -12,12 +12,13 @@
 
 package demo.sphinx.helloworld;
 
+import com.sun.speech.freetts.Voice;
+import com.sun.speech.freetts.VoiceManager;
 import edu.cmu.sphinx.frontend.util.Microphone;
 import edu.cmu.sphinx.recognizer.Recognizer;
 import edu.cmu.sphinx.result.Result;
 import edu.cmu.sphinx.util.props.ConfigurationManager;
 import edu.cmu.sphinx.util.props.PropertyException;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -97,8 +98,34 @@ public class HelloWorld {
     }
 
     private static void takeAction(String resultText) {
-        if (resultText.toLowerCase().contains("Muhammed".toLowerCase())) {
+        if (resultText.toLowerCase().contains("muhammed")) {
             System.out.println("Babaaaaaaaaaaaa");
+        }else if(resultText.toLowerCase().contains("time")){
+
         }
+        speakAction(resultText);
+        speakAction("Alsalamo alikom");
+    }
+    
+    public static void speakAction(String resultText)
+    {
+  
+       Voice voice;//Creating object of Voice class
+        voice = VoiceManager.getInstance().getVoice("kevin");//Getting voice
+        if (voice != null) {
+            voice.allocate();//Allocating Voice
+        }
+        try {
+            voice.setRate(190);//Setting the rate of the voice
+            voice.setPitch(150);//Setting the Pitch of the voice
+            voice.setVolume(3);//Setting the volume of the voice
+            voice.speak(resultText);//Calling speak() method
+  
+        }
+        catch(Exception e)
+        {
+       e.printStackTrace();
+        }
+ 
     }
 }

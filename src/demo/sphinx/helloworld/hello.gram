@@ -6,6 +6,6 @@
 
 grammar hello;
 
-public <greet> = (Good morning | Hello) ( Maryam | Muhammed);
+public <greet> = (Good morning | Hello | Hi | time) (Maryam | Muhammed | Asmaa);
 
 
